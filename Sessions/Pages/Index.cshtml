@@ -1,0 +1,11 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Сinema</h1>
+    @*Переход на страницу сос писком сеансов*@
+    <h3 class="display-4"> <a asp-area="" asp-page="/Session">Session</a></h3>
+</div>

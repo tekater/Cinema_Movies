@@ -1,0 +1,71 @@
+﻿@page 
+@model Sessions.Pages.SessionModel
+@using Session
+@{
+    ViewData["Title"] = "Cinema";
+}
+    <div class="text-center">
+        <h1 class="display-4">Cinema</h1>
+    </div>
+
+
+    <div class ="list-group-item d-flex justify-content-between">
+    <form asp-page-handler="AddMovie" method="post">
+            <div class="form-group">
+                <label>Movie Name:</label> <br>
+                <input class="text" name="name" />
+            </div>
+            <div class="form-group">
+                <label>Director Name:</label> <br>
+                <input <input class="text" name="director" />
+            </div>
+            <div class="form-group">
+                <label>Style:</label> <br>
+                <input class="text" name="style" />
+            </div>
+            <div class="form-group">
+                <label>Description:</label> <br>
+                <input class="text" name="description" />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Movie</button>
+        </form>
+
+        <form asp-page-handler="AddSession" method="post">
+            <div class="form-group">
+                <label>Movie Name:</label> <br>
+                <input class="text" name="name" />
+            </div>
+            <div class="form-group">
+                <label>Date:</label> <br>
+                <input <input class="text" name="date" />
+            </div>
+            <div class="form-group">
+                <label>Time:</label> <br>
+                <input class="text" name="time" />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Session</button>
+        </form>
+   </div>
+    <br>
+
+    <div>
+    @foreach (var movie in Model.MSS.SessionList)
+        {
+            <span class="list-group-item d-flex justify-content-between">
+                <h5>
+                    <a asp-page="/MovieInfo" asp-route-name="@movie.Key">@movie.Key</a>
+                </h5>
+                <form asp-page-handler="DeleteMovie" method="post" asp-route-name="@movie.Key" onsubmit="return confirm('Sure Delete?');">
+                    <button type="submit" class="btn btn-primary"
+                    >Delete</button>
+                </form>
+            </span>
+        @foreach (var session in movie.Value)
+        {
+            <ul>
+                <li>Time session: @session.Date @session.Time</li>
+            </ul>            
+        }
+    }    
+</div>
+
